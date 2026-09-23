@@ -26,6 +26,14 @@ import {
   IVerifyDoctorEmailPayload,
 } from "./doctor.interface";
 import generateRandomPassword from "../../utils/randomPassword";
+import { upsertDoctorEmbedding } from "../chat/chat.indexer";
+
+// Keeps the chatbot's vector index in sync without blocking or failing the request.
+const syncDoctorEmbedding = (doctorId: string) => {
+  upsertDoctorEmbedding(doctorId).catch((error) =>
+    console.error("Chat: failed to index doctor", error),
+  );
+};
 
 const applyAsDoctor = async (
   payload: IApplyAsDoctorPayload,
@@ -296,6 +304,8 @@ const approveDoctor = async (
     },
   });
 
+  syncDoctorEmbedding(updatedDoctor.id);
+
   const tempatePath = path.join(
     process.cwd(),
     `src/app/templates/${
@@ -442,6 +452,8 @@ const updateDoctorProfile = async (
     where: { id: existingDoctor.id },
     data: payload,
   });
+
+  syncDoctorEmbedding(updatedDoctor.id);
 
   return updatedDoctor;
 };

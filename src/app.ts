@@ -14,6 +14,7 @@ import { notFound } from "./app/middleware/notFound";
 import { AnalyticsRoutes } from "./app/module/analytics/analytics.route";
 import { AppointementRoutes } from "./app/module/appointment/appointment.route";
 import { AuthRoutes } from "./app/module/auth/auth.route";
+import { ChatRoutes } from "./app/module/chat/chat.route";
 import { DoctorRoutes } from "./app/module/doctor/doctor.route";
 import { PaymentRoutes } from "./app/module/payment/payment.route";
 import { PrescriptionRoutes } from "./app/module/prescription/prescription.route";
@@ -44,6 +45,7 @@ app.use("/api/v1/schedule", ScheduleRoutes);
 app.use("/api/v1/payment", PaymentRoutes);
 app.use("/api/v1/prescription", PrescriptionRoutes);
 app.use("/api/v1/analytics", AnalyticsRoutes);
+app.use("/api/v1/chat", ChatRoutes);
 
 app.get("/test", async (req: Request, res: Response, next: NextFunction) => {
 	try {
