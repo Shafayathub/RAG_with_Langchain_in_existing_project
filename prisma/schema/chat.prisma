@@ -1,0 +1,11 @@
+// Vector table used by LangChain's PGVectorStore for the doctor chatbot.
+// Rows are written by LangChain (not by Prisma). The model exists so Prisma
+// migrations know about the table and don't report drift.
+model DoctorEmbedding {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid // same value as doctors.id
+  content   String?
+  metadata  Json?
+  embedding Unsupported("vector")?
+
+  @@map("doctor_embeddings")
+}

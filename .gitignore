@@ -13,3 +13,6 @@ package-lock.json
 pnpm-workspace.yaml
 .vscode
 .vercel
+
+# Local teaching guide (not committed)
+RAG_CHATBOT_GUIDE.md

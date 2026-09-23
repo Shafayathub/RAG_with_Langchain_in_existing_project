@@ -7,6 +7,8 @@
         "dev": "tsx watch src/server.ts",
         "build": "tsup",
         "start": "node dist/server.js",
+        "test:openrouter": "tsx src/app/scripts/testOpenRouter.ts",
+        "index:doctors": "tsx src/app/scripts/indexDoctors.ts",
         "test": "echo \"Error: no test specified\" && exit 1",
         "format:check": "npx @biomejs/biome format ./src",
         "format:fix": "npx @biomejs/biome format --write ./src",
@@ -18,6 +20,9 @@
     "license": "ISC",
     "type": "module",
     "dependencies": {
+        "@langchain/core": "^1.2.12",
+        "@langchain/openai": "^1.5.13",
+        "@langchain/pgvector": "^0.1.0",
         "@prisma/adapter-pg": "^7.9.1",
         "@prisma/client": "^7.9.1",
         "bcryptjs": "^3.0.3",
